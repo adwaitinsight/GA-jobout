@@ -1,0 +1,18 @@
+name: Demo joboutput
+on: [push]
+jobs:
+    job1:
+      runs-on: ubuntu-latest
+      outputs:
+        greeting: ${{steps.hello.outputs.greeting}}
+      steps:
+        - name: generate greeting
+          id: hello
+          run: echo "::set-output name = greeting::hello world!"
+          
+    job2:
+      runs-on: ubuntu-latest
+      needs: [job1]
+      steps:
+        - name: use greeting from job 1
+          run: echo "The greeting job 1 is ${{needs.job1.outputs.greeting}}"
