@@ -8,7 +8,7 @@ jobs:
       steps:
         - name: generate greeting
           id: hello
-          run: echo "::set-output name = greeting::hello world!"
+          run: echo "::set-output name=greeting::hello world!"
           
     job2:
       runs-on: ubuntu-latest
